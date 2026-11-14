@@ -113,7 +113,11 @@ class RecipeCli {
 
   void _add() {
     final title = _ask('Назва') ?? '';
-    final servings = int.tryParse(_ask('На скільки порцій') ?? '') ?? 0;
+    final servings = int.tryParse(_ask('На скільки порцій') ?? '');
+    if (servings == null) {
+      _print('Кількість порцій має бути числом');
+      return;
+    }
     final ingredients = <Ingredient>[];
     _print(
         'Інгредієнти у форматі "назва;кількість;одиниця", порожній рядок - кінець');
