@@ -16,9 +16,9 @@ class Recipe {
     required this.id,
     required this.title,
     required this.servings,
-    required this.ingredients,
+    required List<Ingredient> ingredients,
     this.isFavorite = false,
-  }) {
+  }) : ingredients = List.unmodifiable(ingredients) {
     if (title.trim().isEmpty) {
       throw const DomainException('Назва рецепта не може бути порожньою');
     }
