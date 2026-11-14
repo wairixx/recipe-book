@@ -22,7 +22,7 @@ class AddRecipeUseCase {
     }
 
     final recipe = Recipe(
-      id: _makeId(title),
+      id: _makeId(),
       title: title.trim(),
       servings: servings,
       ingredients: ingredients,
@@ -32,5 +32,5 @@ class AddRecipeUseCase {
   }
 
   // Простий id з часу створення, щоб не залежати від сховища
-  String _makeId(String title) => '${DateTime.now().microsecondsSinceEpoch}';
+  String _makeId() => '${DateTime.now().microsecondsSinceEpoch}';
 }
