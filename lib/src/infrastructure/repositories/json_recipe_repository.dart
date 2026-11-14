@@ -14,7 +14,10 @@ class JsonRecipeRepository implements RecipeRepository {
   @override
   List<Recipe> getAll() {
     if (!_file.existsSync()) return [];
-    final data = jsonDecode(_file.readAsStringSync()) as List<dynamic>;
+    final content = _file.readAsStringSync();
+    // Порожній файл вважаємо порожньою книгою, а не помилкою
+    if (content.trim().isEmpty) return [];
+    final data = jsonDecode(content) as List<dynamic>;
     return data
         .map((item) => RecipeJsonMapper.fromJson(item as Map<String, dynamic>))
         .toList();
